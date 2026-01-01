@@ -139,8 +139,7 @@ export default async function Dashboard() {
       totalScore={totalScore}
       grade={grade}
       metrics={{ savingsRate, wantRatio, debtRatio }}
-      grade={grade}
-      metrics={{ savingsRate, wantRatio, debtRatio }}
+
       budgets={budgetStats}
       hasSeenOnboarding={user?.hasSeenOnboarding || false}
     />
