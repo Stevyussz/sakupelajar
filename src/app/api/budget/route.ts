@@ -77,8 +77,11 @@ export async function GET() {
     await dbConnect();
 
     try {
+        const user = await User.findById(session.user.id).lean();
+        if (!user) return NextResponse.json({ success: false, error: 'User not found' }, { status: 404 });
+
         // Calculate spent amount dynamically based on period
-        const budgetWithStats = await Promise.all(budgets.map(async (b: any) => {
+        const budgetWithStats = await Promise.all(user.budgets.map(async (b: any) => {
             const now = new Date();
             let startDate = new Date();
 
@@ -121,4 +124,3 @@ export async function GET() {
         console.error('Error fetching budgets:', error);
         return NextResponse.json({ success: false, error: 'Failed to fetch budgets' }, { status: 500 });
     }
-}
