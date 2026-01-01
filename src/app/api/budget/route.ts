@@ -124,3 +124,4 @@ export async function GET() {
         console.error('Error fetching budgets:', error);
         return NextResponse.json({ success: false, error: 'Failed to fetch budgets' }, { status: 500 });
     }
+}
